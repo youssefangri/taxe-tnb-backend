@@ -9,13 +9,13 @@ import javax.persistence.Id;
 public class Terrain {
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	private String reference;
     private Double surface;
-    private String reference;
 	public Terrain() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Terrain(Double surface, String reference) {
+	public Terrain(String reference, Double surface) {
 		super();
 		this.surface = surface;
 		this.reference = reference;

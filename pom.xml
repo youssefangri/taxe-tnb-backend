@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.erme</groupId>
-	<artifactId>taxeTnb</artifactId>
+	<artifactId>taxe-tnb</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>taxeTnb</name>
 	<description>Project for manage Tax TNB</description>

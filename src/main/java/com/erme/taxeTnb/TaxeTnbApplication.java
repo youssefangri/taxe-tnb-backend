@@ -9,6 +9,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import com.erme.taxeTnb.bean.TauxTnb;
 import com.erme.taxeTnb.bean.Terrain;
 import com.erme.taxeTnb.service.TauxTnbService;
+import com.erme.taxeTnb.service.TaxeTnbService;
 import com.erme.taxeTnb.service.TerrainService;
 
 @SpringBootApplication
@@ -36,7 +37,7 @@ public class TaxeTnbApplication {
 			terrainService.deleteByReference("ref2");
 			*/
 		
-			
+			/*
 			// Insert Taux Into DATABASE
 			TauxTnbService tauxTnbService = ctx.getBean(TauxTnbService.class); 
 			tauxTnbService.save(new TauxTnb(0D, 100D, 2D));
@@ -48,7 +49,21 @@ public class TaxeTnbApplication {
 			//TauxTnb t2 = tauxTnbService.findBySurface(101D);
 			//System.out.println(t1);
 			//System.out.println(t2); 
-			 
+			 */
+		
+			TaxeTnbService taxeTnbService = ctx.getBean(TaxeTnbService.class);
+			TerrainService terrainService = ctx.getBean(TerrainService.class);
+			taxeTnbService.save("ref1", 2020, 1);
+			taxeTnbService.save("ref1", 2021, 2);
+			taxeTnbService.save("ref1", 2022, 0);
+			taxeTnbService.save("ref3", 2020, 0);
+			taxeTnbService.save("ref3", 2020, 2);
+			System.out.println("---Test Find All--- ");
+			System.out.println(taxeTnbService.findAll());
+			System.out.println("---Test Find By Annee: 2020--- ");
+			System.out.println(taxeTnbService.findByAnnee(2020));
+			System.out.println("---Test Find By Terrain and Annee: ref1-2021--- ");
+			System.out.println(taxeTnbService.findByTerrainAndAnnee(terrainService.findByReference("ref1"), 2021));
 	}
 
 }

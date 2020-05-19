@@ -14,4 +14,5 @@ public interface TaxeTnbRepository extends JpaRepository<TaxeTnb, Long> {
 	TaxeTnb findByTerrain(Terrain terrain);
 	List<TaxeTnb> findByAnnee(int annee);
 	TaxeTnb findByTerrainAndAnnee(Terrain terrain,int annee);
+	//find by annee max et min
 }

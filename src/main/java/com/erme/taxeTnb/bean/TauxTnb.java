@@ -41,6 +41,13 @@ public class TauxTnb {
 	public void setPrixMetreCarre(Double prixMetreCarre) {
 		this.prixMetreCarre = prixMetreCarre;
 	}
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	@Override
 	public String toString() {
 		return "TauxTnb [id=" + id + ", surfaceMin=" + surfaceMin + ", surfaceMax=" + surfaceMax + ", prixMetreCarre="

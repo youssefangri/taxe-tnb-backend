@@ -10,6 +10,7 @@ import com.erme.taxeTnb.bean.TauxTnb;
 @Repository
 public interface TauxTnbRepository extends JpaRepository<TauxTnb, Long> {
 
+	//@Query("select taux from TauxTnb taux where :surface between taux.surfaceMin and taux.surfaceMax")
 	@Query("select taux from TauxTnb taux where :surface>taux.surfaceMin and :surface<= taux.surfaceMax")
 	TauxTnb findBySurface(@Param("surface") Double surface); 
 	

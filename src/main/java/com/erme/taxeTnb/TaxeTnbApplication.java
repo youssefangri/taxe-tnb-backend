@@ -51,7 +51,7 @@ public class TaxeTnbApplication {
 			//System.out.println(t2); 
 			 */
 		
-			TaxeTnbService taxeTnbService = ctx.getBean(TaxeTnbService.class);
+			/*TaxeTnbService taxeTnbService = ctx.getBean(TaxeTnbService.class);
 			TerrainService terrainService = ctx.getBean(TerrainService.class);
 			taxeTnbService.save("ref1", 2020, 1);
 			taxeTnbService.save("ref1", 2021, 2);
@@ -64,6 +64,7 @@ public class TaxeTnbApplication {
 			System.out.println(taxeTnbService.findByAnnee(2020));
 			System.out.println("---Test Find By Terrain and Annee: ref1-2021--- ");
 			System.out.println(taxeTnbService.findByTerrainAndAnnee(terrainService.findByReference("ref1"), 2021));
+			*/
 	}
 
 }

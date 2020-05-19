@@ -1,10 +1,15 @@
 package com.erme.taxeTnb.bean;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
 @Entity
 public class TaxeTnb {
@@ -12,13 +17,18 @@ public class TaxeTnb {
 	private Long id;
     private int annee;
     private Double montantBase;
-    private int nombreMoisRetard;
+    private long nombreMoisRetard;
     private Double montantRetard;
     private Double montant;
-    @OneToOne
+    @JsonFormat(shape = Shape.STRING,pattern = "dd-MM-yyyy")
+    private Date datePresentation;
+    @ManyToOne
     private Terrain terrain;
-    @OneToOne
+    @ManyToOne
     private TauxTnb tauxTnb;
+    @ManyToOne
+    private Redevable redevable;
+    
 	public TaxeTnb() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -46,10 +56,10 @@ public class TaxeTnb {
 	public void setMontantBase(Double montantBase) {
 		this.montantBase = montantBase;
 	}
-	public int getNombreMoisRetard() {
+	public long getNombreMoisRetard() {
 		return nombreMoisRetard;
 	}
-	public void setNombreMoisRetard(int nombreMoisRetard) {
+	public void setNombreMoisRetard(long nombreMoisRetard) {
 		this.nombreMoisRetard = nombreMoisRetard;
 	}
 	public Double getMontantRetard() {
@@ -75,6 +85,13 @@ public class TaxeTnb {
 	}
 	public void setTauxTnb(TauxTnb tauxTnb) {
 		this.tauxTnb = tauxTnb;
+	}
+	
+	public Redevable getRedevable() {
+		return redevable;
+	}
+	public void setRedevable(Redevable redevable) {
+		this.redevable = redevable;
 	}
 	@Override
 	public String toString() {

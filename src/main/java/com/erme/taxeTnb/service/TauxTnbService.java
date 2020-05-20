@@ -1,5 +1,7 @@
 package com.erme.taxeTnb.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +29,11 @@ public class TauxTnbService {
 			tauxTnbRepository.save(tauxTnb);
 			return 1;
 		}
-		
 	}
+
+	public List<TauxTnb> findAll() {
+		return tauxTnbRepository.findAll();
+	}
+	
+	
 }

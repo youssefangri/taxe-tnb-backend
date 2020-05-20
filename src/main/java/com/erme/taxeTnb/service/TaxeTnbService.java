@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.erme.taxeTnb.bean.Redevable;
 import com.erme.taxeTnb.bean.TauxTnb;
 import com.erme.taxeTnb.bean.TaxeTnb;
 import com.erme.taxeTnb.bean.Terrain;
@@ -21,6 +22,8 @@ public class TaxeTnbService {
 	private TerrainService terrainService;
 	@Autowired
 	private TauxTnbService tauxTnbService;
+	@Autowired
+	private RedevableService redevableService;
 
 	public TaxeTnb findByTerrain(Terrain terrain) {
 		return taxeTnbRepository.findByTerrain(terrain);
@@ -39,19 +42,23 @@ public class TaxeTnbService {
 		return taxeTnbRepository.findByTerrainAndAnnee(terrain, annee);
 	}
 
-	private Object[] save(String terrainReference, int annee, Date datePresentation, boolean simuler) {
+	private Object[] save(String terrainReference, int annee, Date datePresentation,String cin, boolean simuler) {
 		int res = 0;
 		TaxeTnb newTaxeTnb=null;
+		Redevable loadedRedevable = redevableService.findByCin(cin);
+		if (loadedRedevable == null) {
+			res = -1;
+		}
 		Terrain loadedTerrain = terrainService.findByReference(terrainReference);
 		if(loadedTerrain == null) {
-			res =-1;
+			res = -2;
 		}
 		if (findByTerrainAndAnnee(loadedTerrain, annee) !=null) {
-			res = -2;
+			res = -3;
 		}
 		TauxTnb loadedTaux = tauxTnbService.findBySurface(loadedTerrain.getSurface());
 		if (loadedTaux==null) {
-			res =  -3;
+			res = -4;
 		}else {
 			long nombreMoisRetard = DateUtil.diff(datePresentation,annee);
 			newTaxeTnb = new TaxeTnb();
@@ -61,19 +68,22 @@ public class TaxeTnbService {
 			newTaxeTnb.setMontantRetard(newTaxeTnb.getMontantBase()*nombreMoisRetard*0.5);
 			newTaxeTnb.setMontant(newTaxeTnb.getMontantBase()+newTaxeTnb.getMontantRetard());
 			newTaxeTnb.setTauxTnb(loadedTaux);
+			loadedTerrain.setLastYearPayed(annee);
 			newTaxeTnb.setTerrain(loadedTerrain);
+			newTaxeTnb.setRedevable(loadedRedevable);
 			if (simuler==false) {
+				terrainService.updateTerrainLastYearPayed(loadedTerrain.getId(), annee);
 				taxeTnbRepository.save(newTaxeTnb);
 			}
 			res =  1;
 		}
 		return new Object[] {res,newTaxeTnb};
 	}
-	public Object[] save(String terrainReference, int annee, Date datePresentation) {
-		return save(terrainReference, annee, datePresentation, false);
+	public Object[] save(String terrainReference, int annee, Date datePresentation, String cin) {
+		return save(terrainReference, annee, datePresentation,cin, false);
 	}
-	public Object[] simuler(String terrainReference, int annee, Date datePresentation) {
-		return save(terrainReference, annee, datePresentation, true);
+	public Object[] simuler(String terrainReference, int annee, Date datePresentation,String cin) {
+		return save(terrainReference, annee, datePresentation,cin, true);
 	}
 	
 }

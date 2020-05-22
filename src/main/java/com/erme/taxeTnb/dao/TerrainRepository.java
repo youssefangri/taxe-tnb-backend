@@ -16,8 +16,8 @@ public interface TerrainRepository extends JpaRepository<Terrain, Long> {
 	List<Terrain> findAll();
 	Terrain findByReference(String reference);
 	int deleteByReference(String reference);
-	@Modifying
-	@Query("update Terrain t set t.lastyearpayed = ?2 where t.id = ?1")
+	@Modifying 
+	@Query(value = "update Terrain t set t.last_year_payed = ?2 where t.id = ?1",nativeQuery = true)
 	void updateTerrainLastYearPayed(Long id, int LastYearPayed);
 	List<Terrain> findByRedevable(Redevable redevable);
 }

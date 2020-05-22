@@ -21,7 +21,7 @@ public class TerrainService {
 	public Terrain findByReference(String reference) {
 		return terrainRepository.findByReference(reference);
 	}
-	
+	@Transactional
 	public void updateTerrainLastYearPayed(Long id, int LastYearPayed) {
 		terrainRepository.updateTerrainLastYearPayed(id, LastYearPayed);
 	}

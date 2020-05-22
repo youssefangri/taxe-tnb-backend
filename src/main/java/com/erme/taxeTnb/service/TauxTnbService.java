@@ -25,6 +25,8 @@ public class TauxTnbService {
 			return -1;
 		}else if (loadedTaux1 !=null /*|| loadedTaux2 !=null*/ ) {
 			return -2;
+		}else if (tauxTnb.getPrixMetreCarre()<0 || tauxTnb.getSurfaceMin()<0 || tauxTnb.getSurfaceMax()<=0) {
+			return -3;
 		}else {
 			tauxTnbRepository.save(tauxTnb);
 			return 1;

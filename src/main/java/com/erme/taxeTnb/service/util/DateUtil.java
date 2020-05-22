@@ -11,6 +11,9 @@ public class DateUtil {
 		LocalDate localDate = LocalDate.of(annee, 4, 1);
 		LocalDate datePresentationAsLocalDate = convertToLocalDateViaInstant(datePresentation);
 		long diff = Period.between(localDate, datePresentationAsLocalDate).getMonths();
+		if (diff<0) {
+			diff = 0;
+		}
 		return diff;
 	}
 

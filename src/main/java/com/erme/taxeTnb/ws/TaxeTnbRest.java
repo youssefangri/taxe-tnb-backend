@@ -1,5 +1,6 @@
 package com.erme.taxeTnb.ws;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -43,13 +44,13 @@ public class TaxeTnbRest {
 		return taxeTnbService.findByTerrainAndAnnee(terrain, annee);
 	}
 
-	@PostMapping("/save/terrain/reference/{reference}/annee/{annee}/cin/{cin}")
-	public Object[] save(@PathVariable String terrainReference,@PathVariable int annee,@RequestBody Date datePresentation,@PathVariable String cin) {
+	@PostMapping("/save/terrain/reference/{terrainReference}/annee/{annee}/cin/{cin}/date/{datePresentation}")
+	public Object[] save(@PathVariable String terrainReference,@PathVariable int annee,@PathVariable String datePresentation,@PathVariable String cin) throws ParseException {
 		return taxeTnbService.save(terrainReference, annee, datePresentation, cin);
 	}
 
-	@PostMapping("/simuler/terrain/reference/{reference}/annee/{annee}/cin/{cin}")
-	public Object[] simuler(@PathVariable String terrainReference,@PathVariable int annee,@RequestBody Date datePresentation,@PathVariable String cin) {
+	@PostMapping("/simuler/terrain/reference/{terrainReference}/annee/{annee}/cin/{cin}/date/{datePresentation}")
+	public Object[] simuler(@PathVariable String terrainReference,@PathVariable int annee,@PathVariable String datePresentation,@PathVariable String cin) throws ParseException {
 		return taxeTnbService.simuler(terrainReference, annee, datePresentation, cin);
 	}
 	

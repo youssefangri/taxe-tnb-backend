@@ -1,5 +1,7 @@
 package com.erme.taxeTnb.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -42,7 +44,9 @@ public class TaxeTnbService {
 		return taxeTnbRepository.findByTerrainAndAnnee(terrain, annee);
 	}
 
-	private Object[] save(String terrainReference, int annee, Date datePresentation,String cin, boolean simuler) {
+	private Object[] save(String terrainReference, int annee, String datePresentationAsString,String cin, boolean simuler) throws ParseException {
+		System.out.println(datePresentationAsString);
+		Date datePresentation=new SimpleDateFormat("dd-MM-yyyy").parse(datePresentationAsString);
 		int res = 0;
 		TaxeTnb newTaxeTnb=null;
 		Redevable loadedRedevable = redevableService.findByCin(cin);
@@ -69,6 +73,7 @@ public class TaxeTnbService {
 			newTaxeTnb.setMontant(newTaxeTnb.getMontantBase()+newTaxeTnb.getMontantRetard());
 			newTaxeTnb.setTauxTnb(loadedTaux);
 			loadedTerrain.setLastYearPayed(annee);
+			newTaxeTnb.setDatePresentation(datePresentation);
 			newTaxeTnb.setTerrain(loadedTerrain);
 			newTaxeTnb.setRedevable(loadedRedevable);
 			if (simuler==false) {
@@ -79,10 +84,10 @@ public class TaxeTnbService {
 		}
 		return new Object[] {res,newTaxeTnb};
 	}
-	public Object[] save(String terrainReference, int annee, Date datePresentation, String cin) {
+	public Object[] save(String terrainReference, int annee, String datePresentation, String cin) throws ParseException {
 		return save(terrainReference, annee, datePresentation,cin, false);
 	}
-	public Object[] simuler(String terrainReference, int annee, Date datePresentation,String cin) {
+	public Object[] simuler(String terrainReference, int annee, String datePresentation,String cin) throws ParseException {
 		return save(terrainReference, annee, datePresentation,cin, true);
 	}
 	

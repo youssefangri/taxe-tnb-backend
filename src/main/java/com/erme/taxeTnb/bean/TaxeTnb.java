@@ -44,6 +44,13 @@ public class TaxeTnb {
 		this.terrain = terrain;
 		this.tauxTnb = tauxTnb;
 	}
+	
+	public Date getDatePresentation() {
+		return datePresentation;
+	}
+	public void setDatePresentation(Date datePresentation) {
+		this.datePresentation = datePresentation;
+	}
 	public int getAnnee() {
 		return annee;
 	}

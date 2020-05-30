@@ -11,8 +11,8 @@ import com.erme.taxeTnb.bean.Terrain;
 @Repository
 public interface TaxeTnbRepository extends JpaRepository<TaxeTnb, Long> {
 
-	TaxeTnb findByTerrain(Terrain terrain);
+	TaxeTnb findByTerrainReference(String terrainReference);
 	List<TaxeTnb> findByAnnee(int annee);
-	TaxeTnb findByTerrainAndAnnee(Terrain terrain,int annee);
+	TaxeTnb findByTerrainReferenceAndAnnee(String terrainReference,int annee);
 	//find by annee max et min
 }

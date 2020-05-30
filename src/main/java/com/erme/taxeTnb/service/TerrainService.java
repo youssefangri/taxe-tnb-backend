@@ -57,8 +57,4 @@ public class TerrainService {
 		return terrainRepository.deleteByReference(reference);
 	}
 
-
-
-	
-	
 }

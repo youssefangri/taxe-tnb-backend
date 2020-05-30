@@ -24,13 +24,13 @@ public class TaxeTnbRest {
 	@Autowired
 	private TaxeTnbService taxeTnbService;
 
-	@GetMapping("/terrain/")
-	public TaxeTnb findByTerrain(@RequestBody Terrain terrain) {
-		return taxeTnbService.findByTerrain(terrain);
+	@GetMapping("/terrain/reference/{terrainReference}")
+	public TaxeTnb findByTerrain(@PathVariable String terrainReference) {
+		return taxeTnbService.findByTerrainReference(terrainReference);
 	}
 
 	@GetMapping("/annee/{annee}")
-	public List<TaxeTnb> findByAnnee(int annee) {
+	public List<TaxeTnb> findByAnnee(@PathVariable int annee) {
 		return taxeTnbService.findByAnnee(annee);
 	}
 
@@ -39,9 +39,9 @@ public class TaxeTnbRest {
 		return taxeTnbService.findAll();
 	}
 
-	@GetMapping("/terrain/annee/cin/{cin}")
-	public TaxeTnb findByTerrainAndAnnee(@RequestBody Terrain terrain,@PathVariable int annee) {
-		return taxeTnbService.findByTerrainAndAnnee(terrain, annee);
+	@GetMapping("/terrain/reference/{terrainReference}/annee/{annee}")
+	public TaxeTnb findByTerrainAndAnnee(@PathVariable String terrainReference,@PathVariable int annee) {
+		return taxeTnbService.findByTerrainReferenceAndAnnee(terrainReference, annee);
 	}
 
 	@PostMapping("/save/terrain/reference/{terrainReference}/annee/{annee}/cin/{cin}/date/{datePresentation}")

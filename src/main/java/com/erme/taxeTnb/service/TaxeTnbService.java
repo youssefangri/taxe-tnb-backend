@@ -27,8 +27,8 @@ public class TaxeTnbService {
 	@Autowired
 	private RedevableService redevableService;
 
-	public TaxeTnb findByTerrain(Terrain terrain) {
-		return taxeTnbRepository.findByTerrain(terrain);
+	public TaxeTnb findByTerrainReference(String terrainReference) {
+		return taxeTnbRepository.findByTerrainReference(terrainReference);
 	}
 
 	public List<TaxeTnb> findByAnnee(int annee) {
@@ -40,8 +40,8 @@ public class TaxeTnbService {
 	}
 	
 	
-	public TaxeTnb findByTerrainAndAnnee(Terrain terrain, int annee) {
-		return taxeTnbRepository.findByTerrainAndAnnee(terrain, annee);
+	public TaxeTnb findByTerrainReferenceAndAnnee(String terrainReference, int annee) {
+		return taxeTnbRepository.findByTerrainReferenceAndAnnee(terrainReference, annee);
 	}
 
 	private Object[] save(String terrainReference, int annee, String datePresentationAsString,String cin, boolean simuler) throws ParseException {
@@ -57,7 +57,7 @@ public class TaxeTnbService {
 		if(loadedTerrain == null) {
 			res = -2;
 		}
-		if (findByTerrainAndAnnee(loadedTerrain, annee) !=null) {
+		if (findByTerrainReferenceAndAnnee(terrainReference, annee) !=null) {
 			res = -3;
 		}
 		TauxTnb loadedTaux = tauxTnbService.findBySurface(loadedTerrain.getSurface());
@@ -72,7 +72,9 @@ public class TaxeTnbService {
 			newTaxeTnb.setMontantRetard(newTaxeTnb.getMontantBase()*nombreMoisRetard*0.5);
 			newTaxeTnb.setMontant(newTaxeTnb.getMontantBase()+newTaxeTnb.getMontantRetard());
 			newTaxeTnb.setTauxTnb(loadedTaux);
+			if(loadedTerrain.getLastYearPayed()<annee) {
 			loadedTerrain.setLastYearPayed(annee);
+			}
 			newTaxeTnb.setDatePresentation(datePresentation);
 			newTaxeTnb.setTerrain(loadedTerrain);
 			newTaxeTnb.setRedevable(loadedRedevable);

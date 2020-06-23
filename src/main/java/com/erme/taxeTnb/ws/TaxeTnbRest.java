@@ -5,6 +5,9 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ContentDisposition;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,9 +16,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.erme.taxeTnb.bean.TaxeTnb;
 import com.erme.taxeTnb.bean.Terrain;
 import com.erme.taxeTnb.service.TaxeTnbService;
+
+import net.sf.jasperreports.engine.JRException;
 @CrossOrigin()
 @RestController
 @RequestMapping("/taxe-tnb/taxe")
@@ -53,6 +59,23 @@ public class TaxeTnbRest {
 	public Object[] simuler(@PathVariable String terrainReference,@PathVariable int annee,@PathVariable String datePresentation,@PathVariable String cin) throws ParseException {
 		return taxeTnbService.simuler(terrainReference, annee, datePresentation, cin);
 	}
+
+	@GetMapping("/pdf/terrain/reference/{terrainReference}/annee/{annee}")
+	public ResponseEntity<byte[]> generatePdf(@PathVariable String terrainReference,@PathVariable int annee) throws JRException {
+		byte[] bytes = taxeTnbService.generatePdf(terrainReference, annee);
+		HttpHeaders headers = new HttpHeaders();
+		ContentDisposition contentDisposition = ContentDisposition.builder("inline")
+				.filename("taxe.pdf").build();
+		headers.setContentDisposition(contentDisposition);
+		return ResponseEntity
+				.ok()
+				.header("Content-Type", "application/pdf; charset=UTF-8")
+				.headers(headers)
+				.body(bytes);
+	}
+
+	
+	
 	
 	
 }

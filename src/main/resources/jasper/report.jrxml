@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="52e56f09-857b-483d-b7f8-0a2a6132df4c">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="647"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="353"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="id" class="java.lang.Long"/>
+	<field name="annee" class="java.lang.Integer"/>
+	<field name="montantBase" class="java.lang.Double"/>
+	<field name="nombreMoisRetard" class="java.lang.Long"/>
+	<field name="montantRetard" class="java.lang.Double"/>
+	<field name="montant" class="java.lang.Double"/>
+	<field name="datePresentation" class="java.util.Date"/>
+	<field name="terrain.reference" class="java.lang.String"/>
+	<field name="terrain.surface" class="java.lang.Double"/>
+	<field name="tauxTnb.prixMetreCarre" class="java.lang.Double"/>
+	<field name="redevable.nom" class="java.lang.String"/>
+	<field name="redevable.cin" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="59" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<staticText>
+				<reportElement x="170" y="20" width="260" height="30" uuid="85366c2f-ad97-4827-9ac6-ceb634ea5688"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Taxe Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="410" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<staticText>
+				<reportElement x="20" y="107" width="80" height="20" uuid="c25ff5b2-dfb1-4548-9286-de2865b6219e"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[montant de base]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="171" y="107" width="150" height="20" uuid="25a3693c-1e07-4703-b70d-d21d549000c7"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{montantBase}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="138" width="100" height="20" uuid="9d9b5255-75c4-4330-a3e5-583a8da78901"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre Mois Retard]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="171" y="138" width="140" height="20" uuid="1368aaa3-41db-4e39-b27a-97eea2456312"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{nombreMoisRetard}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="168" width="80" height="20" uuid="bfc8fad3-0580-4de8-ac54-1de8fdef069a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[montant Retard]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="171" y="168" width="140" height="20" uuid="d0c64bf7-6e8e-4f84-b5cf-6c088f4fd462"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{montantRetard}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="203" width="80" height="20" uuid="57896e3b-2c1b-4a7d-9cb6-2d67faeb8f27"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Montant Total]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="171" y="203" width="60" height="20" uuid="9f17520f-079a-44de-97eb-e53483071378"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{montant}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="171" y="68" width="150" height="30" uuid="926517a6-f850-4419-97a2-4c8277045e0a"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{annee}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="68" width="130" height="30" uuid="c9a07ce0-0070-4ac1-a148-582fb55576e1"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Annee]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="171" y="40" width="100" height="30" uuid="2b430159-5413-44fb-a471-f17e47f9b070"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="40" width="90" height="30" uuid="670b3dbd-e859-476f-b035-4350a01a520d"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Taxe ID]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="171" y="240" width="120" height="20" uuid="7d979247-ecee-4710-a68f-90b4cf7cc858"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{datePresentation}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="240" width="100" height="20" uuid="e88f261f-bb27-478c-b205-adab143387a5"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date Presentation]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="171" y="270" width="150" height="18" uuid="c9195b44-b593-405e-a680-da88258e1ccb"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{terrain.reference}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="268" width="100" height="20" uuid="1a4e105d-d7f9-491c-9749-60ea0c0fd0dd"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Terrain Reference]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="171" y="300" width="100" height="23" uuid="57a44330-7437-4c8c-90f3-2aadd402447b"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{terrain.surface}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="300" width="100" height="20" uuid="ef991166-054d-460c-a4d1-2b0a4ca2d520"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Terrain Surface]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="171" y="330" width="148" height="20" uuid="d033cbeb-c416-46c5-be5e-fd0543637588"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{tauxTnb.prixMetreCarre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="330" width="120" height="20" uuid="d65b92f1-7f28-476c-966d-ac0d56cad89c"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Prix Metre Carre]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="171" y="362" width="130" height="20" uuid="42d17bed-c471-4236-8abf-895d51e5aea3"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{redevable.nom}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="362" width="120" height="20" uuid="f53b66ee-3b07-4f96-b556-090cf04402e5"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Redevable Nom]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="21" y="390" width="120" height="20" uuid="1a40ac4c-77ae-4e41-ba99-8db976215dd1"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Redevable CIN]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="171" y="390" width="130" height="20" uuid="56f16488-9370-418b-b42a-74ab064053b1"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{redevable.cin}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

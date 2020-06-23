@@ -1,19 +1,41 @@
 package com.erme.taxeTnb.service;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
+
+
+
 
 import com.erme.taxeTnb.bean.Redevable;
 import com.erme.taxeTnb.bean.TauxTnb;
 import com.erme.taxeTnb.bean.TaxeTnb;
 import com.erme.taxeTnb.bean.Terrain;
 import com.erme.taxeTnb.dao.TaxeTnbRepository;
+import com.erme.taxeTnb.jasper.StorageService;
 import com.erme.taxeTnb.service.util.DateUtil;
+import com.erme.taxeTnb.service.util.PdfUtil;
+
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRSaver;
 
 @Service
 public class TaxeTnbService {
@@ -26,7 +48,8 @@ public class TaxeTnbService {
 	private TauxTnbService tauxTnbService;
 	@Autowired
 	private RedevableService redevableService;
-
+	@Autowired(required=false)
+	private StorageService storageService;
 	public TaxeTnb findByTerrainReference(String terrainReference) {
 		return taxeTnbRepository.findByTerrainReference(terrainReference);
 	}
@@ -40,9 +63,19 @@ public class TaxeTnbService {
 	}
 	
 	
+	
+	
+	
 	public TaxeTnb findByTerrainReferenceAndAnnee(String terrainReference, int annee) {
 		return taxeTnbRepository.findByTerrainReferenceAndAnnee(terrainReference, annee);
 	}
+	
+	public byte[] generatePdf(String terrainReference, int annee) throws JRException {
+		TaxeTnb taxe= findByTerrainReferenceAndAnnee(terrainReference, annee);
+		return PdfUtil.generatePdf(taxe, "jasper\\report.jrxml");
+	}
+	
+	
 
 	private Object[] save(String terrainReference, int annee, String datePresentationAsString,String cin, boolean simuler) throws ParseException {
 		System.out.println(datePresentationAsString);

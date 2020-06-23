@@ -45,6 +45,26 @@ public class TaxeTnb {
 		this.tauxTnb = tauxTnb;
 	}
 	
+	public TaxeTnb(Long id, int annee, Double montantBase, long nombreMoisRetard, Double montantRetard, Double montant,
+			Date datePresentation, Terrain terrain, TauxTnb tauxTnb, Redevable redevable) {
+		super();
+		this.id = id;
+		this.annee = annee;
+		this.montantBase = montantBase;
+		this.nombreMoisRetard = nombreMoisRetard;
+		this.montantRetard = montantRetard;
+		this.montant = montant;
+		this.datePresentation = datePresentation;
+		this.terrain = terrain;
+		this.tauxTnb = tauxTnb;
+		this.redevable = redevable;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public Date getDatePresentation() {
 		return datePresentation;
 	}
@@ -102,9 +122,11 @@ public class TaxeTnb {
 	}
 	@Override
 	public String toString() {
-		return "TaxeTnb [annee=" + annee + ", montantBase=" + montantBase + ", nombreMoisRetard=" + nombreMoisRetard
-				+ ", montantRetard=" + montantRetard + ", montant=" + montant + "]";
+		return "TaxeTnb [id=" + id + ", annee=" + annee + ", montantBase=" + montantBase + ", nombreMoisRetard="
+				+ nombreMoisRetard + ", montantRetard=" + montantRetard + ", montant=" + montant + ", datePresentation="
+				+ datePresentation + ", terrain=" + terrain + ", tauxTnb=" + tauxTnb + ", redevable=" + redevable + "]";
 	}
+	
     
     
 }

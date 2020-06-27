@@ -74,6 +74,11 @@ public class TaxeTnbRest {
 				.body(bytes);
 	}
 
+	@GetMapping("/statistic/annee/{annee}")
+	public Object[] calculeTotatMontantInYear(@PathVariable int annee) {
+		return taxeTnbService.calculeTotatMontantInYear(annee);
+	}
+
 	
 	
 	

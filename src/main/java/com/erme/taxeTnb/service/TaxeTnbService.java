@@ -126,4 +126,19 @@ public class TaxeTnbService {
 		return save(terrainReference, annee, datePresentation,cin, true);
 	}
 	
+	
+	@SuppressWarnings("deprecation")
+	public Object[] calculeTotatMontantInYear(int annee) {
+		List<TaxeTnb> loadedTaxes = taxeTnbRepository.findByAnneeInDatePresentation(annee);
+		double[] totalMontantBase 	= {0d,0d,0d,0d,0d,0d,0d,0d,0d,0d,0d,0d};
+		double[] totalMontantRetard	= {0d,0d,0d,0d,0d,0d,0d,0d,0d,0d,0d,0d};
+		for (TaxeTnb taxeTnb : loadedTaxes) {
+			//System.out.println(taxeTnb.getDatePresentation().getMonth());
+			int month = taxeTnb.getDatePresentation().getMonth();
+			//System.out.println(totalMontantBase[month]);
+			totalMontantBase[month]+=taxeTnb.getMontantBase();
+			totalMontantRetard[month]+=taxeTnb.getMontantRetard();
+		}
+		return new Object[] {totalMontantBase,totalMontantRetard };
+	}
 }

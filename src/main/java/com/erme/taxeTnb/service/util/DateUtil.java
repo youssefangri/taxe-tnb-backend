@@ -7,10 +7,13 @@ import java.util.Date;
 
 public class DateUtil {
 
+	@SuppressWarnings("deprecation")
 	public static long diff(Date datePresentation, int annee) {
 		LocalDate localDate = LocalDate.of(annee, 4, 1);
-		LocalDate datePresentationAsLocalDate = convertToLocalDateViaInstant(datePresentation);
-		long diff = Period.between(localDate, datePresentationAsLocalDate).getMonths();
+		LocalDate datePresentationAsLocalDate = convertToLocalDateViaInstant(datePresentation);		
+		long diffMonths = Period.between(localDate, datePresentationAsLocalDate).getMonths();
+		long diffYear = Period.between(localDate, datePresentationAsLocalDate).getYears();
+		long diff = (diffYear*12)+diffMonths;
 		if (diff<0) {
 			diff = 0;
 		}

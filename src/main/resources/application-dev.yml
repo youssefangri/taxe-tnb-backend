@@ -3,6 +3,12 @@ spring:
     url: jdbc:mysql://containers-us-west-16.railway.app:5546/railway?useSSL=false
     username: root
     password: k1CutlFsid0bdXjEHT8L
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming: 
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyHbmImpl
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
 
   sql:
     init:

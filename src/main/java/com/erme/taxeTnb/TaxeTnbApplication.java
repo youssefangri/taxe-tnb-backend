@@ -12,7 +12,7 @@ import com.erme.taxeTnb.service.TauxTnbService;
 import com.erme.taxeTnb.service.TaxeTnbService;
 import com.erme.taxeTnb.service.TerrainService;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })
 public class TaxeTnbApplication {
 
 	public static void main(String[] args) {
